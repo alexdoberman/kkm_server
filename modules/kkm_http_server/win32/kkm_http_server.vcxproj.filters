@@ -15,54 +15,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\kkm_application.h">
+    <ClInclude Include="..\src\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\kkm_server.h">
+    <ClInclude Include="..\src\kkm_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\request_engine.h">
+    <ClInclude Include="..\src\kkm_server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\request_types.h">
+    <ClInclude Include="..\src\kkm_server_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\request_parser.h">
+    <ClInclude Include="..\src\kkm_server_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\kkm_server_engine.h">
+    <ClInclude Include="..\src\logmacros_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\request_processor.h">
+    <ClInclude Include="..\src\reply_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reply_types.h">
+    <ClInclude Include="..\src\reply_writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reply_writer.h">
+    <ClInclude Include="..\src\request_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\logmacros_def.h">
+    <ClInclude Include="..\src\request_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\request_processor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\request_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp">
+    <ClCompile Include="..\src\kkm_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\request_engine.cpp">
+    <ClCompile Include="..\src\kkm_server_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\request_parser.cpp">
+    <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\kkm_server_engine.cpp">
+    <ClCompile Include="..\src\reply_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\request_processor.cpp">
+    <ClCompile Include="..\src\request_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reply_writer.cpp">
+    <ClCompile Include="..\src\request_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\request_processor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

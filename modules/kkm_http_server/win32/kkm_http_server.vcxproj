@@ -31,15 +31,15 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\common\common.props" />
+    <Import Project="..\..\..\common\common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\common\common.props" />
+    <Import Project="..\..\..\common\common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../../kkm_driver/include;../../../tier0/include;$(BoostPath);$(IncludePath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include</IncludePath>
+    <IncludePath>../../kkm_driver/include;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
     <OutDir>$(BuildsLibPath)</OutDir>
     <IntDir>.\tmp\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
@@ -50,7 +50,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>.\tmp\$(Configuration)\</IntDir>
-    <IncludePath>../../../kkm_driver/include;../../../tier0/include;$(BoostPath);$(IncludePath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include</IncludePath>
+    <IncludePath>../../kkm_driver/include;$(BoostPath);$(IncludePath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include</IncludePath>
     <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -76,27 +76,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\kkm_application.h" />
-    <ClInclude Include="..\..\src\kkm_server.h" />
-    <ClInclude Include="..\..\src\kkm_server_engine.h" />
-    <ClInclude Include="..\..\src\logmacros_def.h" />
-    <ClInclude Include="..\..\src\reply_types.h" />
-    <ClInclude Include="..\..\src\reply_writer.h" />
-    <ClInclude Include="..\..\src\request_parser.h" />
-    <ClInclude Include="..\..\src\request_processor.h" />
-    <ClInclude Include="..\..\src\request_types.h" />
-    <ClInclude Include="..\..\src\request_engine.h" />
+    <ClInclude Include="..\src\config.h" />
+    <ClInclude Include="..\src\kkm_application.h" />
+    <ClInclude Include="..\src\kkm_server.h" />
+    <ClInclude Include="..\src\kkm_server_def.h" />
+    <ClInclude Include="..\src\kkm_server_engine.h" />
+    <ClInclude Include="..\src\logmacros_def.h" />
+    <ClInclude Include="..\src\reply_types.h" />
+    <ClInclude Include="..\src\reply_writer.h" />
+    <ClInclude Include="..\src\request_engine.h" />
+    <ClInclude Include="..\src\request_parser.h" />
+    <ClInclude Include="..\src\request_processor.h" />
+    <ClInclude Include="..\src\request_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\kkm_server_engine.cpp" />
-    <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\reply_writer.cpp" />
-    <ClCompile Include="..\..\src\request_engine.cpp" />
-    <ClCompile Include="..\..\src\request_parser.cpp" />
-    <ClCompile Include="..\..\src\request_processor.cpp" />
+    <ClCompile Include="..\src\kkm_server.cpp" />
+    <ClCompile Include="..\src\kkm_server_engine.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\reply_writer.cpp" />
+    <ClCompile Include="..\src\request_engine.cpp" />
+    <ClCompile Include="..\src\request_parser.cpp" />
+    <ClCompile Include="..\src\request_processor.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\kkm_driver\win32\kkm_driver.vcxproj">
+    <ProjectReference Include="..\..\kkm_driver\win32\kkm_driver.vcxproj">
       <Project>{830b4b9d-e14b-419d-a967-29e6225580fe}</Project>
     </ProjectReference>
   </ItemGroup>

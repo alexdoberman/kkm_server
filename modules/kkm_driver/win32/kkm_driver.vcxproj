@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\kkm_logger\logger.hpp" />
     <ClInclude Include="..\include\kkm_driver.h" />
     <ClInclude Include="..\include\kkm_driver_type.h" />
     <ClInclude Include="..\src\kkm_api.h" />
@@ -21,7 +20,6 @@
     <ClInclude Include="..\src\str_conv.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\kkm_logger\logger.cpp" />
     <ClCompile Include="..\src\kkm_api.cpp" />
     <ClCompile Include="..\src\kkm_control.cpp" />
     <ClCompile Include="..\src\kkm_driver.cpp" />
@@ -76,7 +74,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5SerialPortd.lib;%(AdditionalDependencies)</AdditionalDependencies>

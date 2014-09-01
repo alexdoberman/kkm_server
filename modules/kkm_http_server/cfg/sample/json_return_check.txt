@@ -1,0 +1,21 @@
+{
+	"header": 
+			{
+				"idDev": "com10",
+				"idOp":  2
+	        },
+	"body":
+            {
+                "items":[
+           			     	{
+            				    "price"   : 12000,
+                				"quantity": 2000
+                            },
+            				{
+                				"price"   : 24000,
+                				"quantity": 2000
+                            }
+               	        ],
+                "password": 30
+            }
+}

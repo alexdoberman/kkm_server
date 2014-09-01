@@ -1,0 +1,12 @@
+{
+	"header": 
+			{
+				"idDev": "com10",
+				"idOp":  5
+	        },
+	"body":
+            {
+                "password": 30,
+   				"report_type": 1
+            }
+}

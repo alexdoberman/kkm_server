@@ -18,6 +18,9 @@
 #define OP_TYPE_PRINT_PLAIN_TEXT                12
 
 
+#define OP_TYPE_JPOS_PRINT                      101
+
+
 //----------------------------------------------------------------------------------------
 //for header
 struct THeader

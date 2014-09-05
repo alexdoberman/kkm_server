@@ -21,4 +21,5 @@ namespace kkm_request_engine
 	TResult process_request_get_kkm_state(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut);
 
 	TResult process_request_print_plain_text(const TKKMConfig& cfg, const THeader &header, const TPrintText& text,  std::ostream& ssOut);
+	TResult process_request_jpos_print_text(const TKKMConfig& cfg, const THeader &header, const TPrintText& text,  std::ostream& ssOut);
 }

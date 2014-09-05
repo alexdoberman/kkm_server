@@ -9,6 +9,7 @@
 #include "request_parser.h"
 #include "request_engine.h"
 #include "reply_writer.h"
+#include "jposadapter.h"
 
 TResult  kkm_request_engine::process_request_check(const TKKMConfig& cfg, const THeader &header, const TCheck & check, std::ostream& ssOut)
 {
@@ -405,3 +406,25 @@ TResult kkm_request_engine::process_request_print_plain_text(const TKKMConfig& c
 	return nRet;
 }
 
+TResult kkm_request_engine::process_request_jpos_print_text(const TKKMConfig& cfg, const THeader &header, const TPrintText& text,  std::ostream& ssOut)
+{
+	TResult nRet    = kKKMResult_Success;
+	TJPOSResult ret;
+	do
+	{
+		nRet = jpos_print(header.sDevice, text.vStringLine, ret);
+		if(nRet != kJPOSResult_Success)
+		{
+			LOG_ERR("kkm_request_engine::process_request_jpos_print_text, print  err: " << nRet);
+			break;
+		}
+	}
+	while(false);
+
+	
+	TErrCode reply = {ret.nErr, nRet};
+	boost::property_tree::ptree pt = kkm_reply_writer::write_reply(reply);
+	boost::property_tree::write_json(ssOut, pt);
+
+	return nRet;
+}

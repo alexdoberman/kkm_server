@@ -1,0 +1,41 @@
+{
+	"header": 
+			{
+				"idDev": "com14",
+				"idOp":  1
+	        },
+	"body":
+            {
+                "items":[
+           			     	{
+                                "line"    : "morojeno",
+            				    "price"   : 12000,
+                				"quantity": 2000,
+                				"department": 1
+                            },
+            				{
+                                "line"    : "mico",
+                				"price"   : 24000,
+                				"quantity": 2000,
+                				"department": 1,
+                				"dicount_sign": 0,
+                				"dicount_type": 0,
+                				"dicount_val": 10
+                            },
+            				{
+                                "line"    : "tea",
+                				"price"   : 50000,
+                				"quantity": 2000,
+                				"department": 1,
+                				"dicount_sign": 0,
+                				"dicount_type": 1,
+                				"dicount_val": 3000
+                            }
+               	        ],
+                "password": 30,
+   				"dicount_sign": 0,
+   				"dicount_type": 1,
+   				"dicount_val": 5000,
+                "summ": 0
+            }
+}

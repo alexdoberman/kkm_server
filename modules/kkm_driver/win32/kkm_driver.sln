@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kkm_test", "..\..\kkm_test\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kkm_http_server", "..\..\kkm_http_server\win32\kkm_http_server.vcxproj", "{A10C4E76-D6BA-49DD-8C01-032EFD3906E8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpos_adapter", "..\..\jpos_adapter\win32\jpos_adapter.vcxproj", "{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,10 @@ Global
 		{A10C4E76-D6BA-49DD-8C01-032EFD3906E8}.Debug|Win32.Build.0 = Debug|Win32
 		{A10C4E76-D6BA-49DD-8C01-032EFD3906E8}.Release|Win32.ActiveCfg = Release|Win32
 		{A10C4E76-D6BA-49DD-8C01-032EFD3906E8}.Release|Win32.Build.0 = Release|Win32
+		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Debug|Win32.Build.0 = Debug|Win32
+		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Release|Win32.ActiveCfg = Release|Win32
+		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -171,6 +171,20 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 			}
 			kkm_request_engine::process_request_print_plain_text(m_cfg, header, text, ssOut);
 		}
+		else if (header.nTypeOp == OP_TYPE_JPOS_PRINT)
+		{
+			//unsafe operation
+			Poco::Mutex::ScopedLock guard(get_lock(header.sDevice));
+
+			TPrintText text;
+			nRet = kkm_request_parser::parse_print_text(pt, text);
+			if (nRet != kKKMResult_Success)
+			{
+				LOG_ERR("kkm_request_engine::parse_print_text err: " << nRet);
+				break;
+			}
+			kkm_request_engine::process_request_jpos_print_text(m_cfg, header, text, ssOut);
+		}
 		else
 		{
 			//unknown request

@@ -1,7 +1,7 @@
 {
     "header": 
             {
-                "idDev": "POS1",
+                "idDev": "POS",
                 "idOp":  101
             },
     "body": ["Привет", "2222", "3333"]

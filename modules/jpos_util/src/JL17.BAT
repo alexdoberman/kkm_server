@@ -15,6 +15,5 @@ path = %sss%;...\posiflex;"C:\Program Files (x86)\Java\jdk1.7.0_67\bin";"C:\Prog
 
 javac -classpath %ss% PosPrinter.java PosPrinterEngine.java
 jar.exe cfm ..\pos.jar manifest.txt *.class 
-copy *.class ..\classes
-PAUSE
 @del *.class
+PAUSE

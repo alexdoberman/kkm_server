@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+<!--Saved by JavaPOS jpos.config/loader (JCL) version 2.1.0-RC3 on 2008/6/13 下午 1:20-->
+    <JposEntry logicalName="POS">
+        <creation factoryClass="posiflex.jpos.Factory" serviceClass="posiflex.jpos.PpService"/>
+        <vendor name="Posiflex Inc." url="http://www.posiflex.com.tw"/>
+        <jpos category="POSPrinter" version="1.7"/>
+        <product description="Posiflex POS Printer" name="Posiflex POS Printer" url="http://www.posiflex.com.tw"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+	<prop name="Model" type="String" value="PP8000"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="baudRate" type="String" value="115200"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="Language" type="String" value="English"/>
+        <prop name="sleep" type="String" value="800"/>
+        <prop name="encoding" type="String" value="cp437"/>
+       	</JposEntry>
+
+
+</JposEntries>

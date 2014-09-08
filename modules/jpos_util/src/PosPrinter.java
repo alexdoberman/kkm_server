@@ -10,15 +10,15 @@ class PosPrinter
 {
     public static void main(String args[])
     {
-
-    	//System.out.println("Default Charset=" + Charset.defaultCharset());
-    	//System.setProperty("file.encoding", "Latin-1");
-    	//System.out.println("file.encoding=" + System.getProperty("file.encoding"));
-    	//System.out.println("Default Charset=" + Charset.defaultCharset());
-
+    	System.out.println("Default Charset=" + Charset.defaultCharset());
         try
         {
-            if (args.length >= 2)
+            if (args.length < 2)
+            {
+                System.out.println("Usage: <app>  <logic_dev_id> <base64_encode_line_1> <base64_encode_line_2> ....");
+                System.out.println("Print <line_1> <line_2> .... on the   <logic_dev_id>.");
+            }
+            else if (args.length >= 2)
             {
                 PosPrinterEngine ppEngine = new PosPrinterEngine();
                 String lines[] = new String [args.length - 1];

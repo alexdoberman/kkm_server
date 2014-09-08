@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kkm_http_server", "..\..\kk
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpos_adapter", "..\..\jpos_adapter\win32\jpos_adapter.vcxproj", "{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "net_send", "..\..\net_send\win32\net_send.vcxproj", "{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -37,6 +39,10 @@ Global
 		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Debug|Win32.Build.0 = Debug|Win32
 		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Release|Win32.ActiveCfg = Release|Win32
 		{F2B68B2A-A275-482A-B5F2-C1DB08718DCB}.Release|Win32.Build.0 = Release|Win32
+		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Debug|Win32.Build.0 = Debug|Win32
+		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Release|Win32.ActiveCfg = Release|Win32
+		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

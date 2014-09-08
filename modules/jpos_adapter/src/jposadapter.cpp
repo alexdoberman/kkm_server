@@ -1,6 +1,11 @@
 #include "jposadapter.h"
 
 #include <algorithm>
+#include <regex>
+
+#include <boost/lexical_cast.hpp>
+
+#include <base64.h>
 
 #include "launcher_tools.h"
 #include "jposadapter_def.h"
@@ -10,38 +15,71 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
     TResult nRet = kJPOSResult_Success;
 	try
     {
+			//clear out
+			ret.nErr   = 0;
+			ret.nErrEx = 0;
+			ret.sDesk  = "";
+
         do
         {
-            //prepare arguments
-            std::vector <std::string> args; 
+			std::string sCmd ="run_jpos.bat ";
+			sCmd.append(sDevName);
 
-            args.push_back("dummy");
-            args.push_back(sDevName);
-			std::for_each(vLines.begin() , vLines.end() , [&args](const std::string & s){ args.push_back(s); });
+			std::for_each(vLines.begin() , vLines.end() , [&sCmd](const std::string & s)
+				{
+					sCmd.append(" "); 
+					sCmd.append( base64_encode((const unsigned char*) s.c_str(), s.length())); 
+			});
 
-			std::string sPath = "D:\\Dropbox\\svn\\java_test_2\\pos_print\\run2.bat";
 			//read ansver
 			int nRetCode = 0;
-			std::string sStdOut;
-			if ((nRet = launcher_tools::launch_pos_tool(sPath, args, nRetCode, sStdOut)) != kJPOSResult_Success)
+			std::vector<std::string> vsStdOut;
+			if ((nRet = launcher_tools::launch_pos_tool(sCmd, nRetCode, vsStdOut)) != kJPOSResult_Success)
             {
-				LOG_ERR("error when launch pos.jar");
+				LOG_ERR("error when launch cmd: '"<<sCmd<<"'");
 				nRet = kJPOSResult_Fail;
                 break;
             }
 		
-			LOG_DBG("-----------------------------------------------------------------------");
-			LOG_DBG(sStdOut);
-			LOG_DBG("-----------------------------------------------------------------------");
-			//parse error todo
-			std::size_t nFound = sStdOut.find("Exception:");
-
-			if (nFound != std::string::npos )
+			LOG_DBG("----ANSVER----");
+			for (size_t i = 0; i< vsStdOut.size(); i++)
 			{
-				ret.nErr   = 1;
-				ret.nErrEx = 0;
-				ret.sDesk  = "fail";
+				std::string  sLine = vsStdOut[i];
+				LOG_DBG(sLine);
+
+				//PosPrinter.Exception: err = 104, errEx = 0, desc = Could not find service
+				std::size_t nFound = sLine.find("PosPrinter.Exception:");
+				if (nFound != std::string::npos )
+				{
+					std::smatch sm;
+					std::regex e ("^PosPrinter.Exception: err = (\\d+), errEx = (\\d+), desc = (.*)\r");
+					std::regex_match (sLine, sm, e);
+
+					if (sm.size() == 4)
+					{
+						try 
+						{
+							ret.nErr   = boost::lexical_cast<int32_t>( sm[1] );
+							ret.nErrEx = boost::lexical_cast<int32_t>( sm[2] );
+							ret.sDesk  = sm[3];
+						} 
+						catch( boost::bad_lexical_cast const& ) 
+						{
+							LOG_ERR("Bad cast.");
+							nRet = kJPOSResult_Fail;
+							break;
+						}
+					}
+					else
+					{
+						LOG_ERR("Bad ansver.");
+						nRet = kJPOSResult_Fail;
+						break;
+					}
+					break;
+				}
 			}
+			LOG_DBG("--------------");
         }
         while (false);
     }

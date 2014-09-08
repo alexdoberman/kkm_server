@@ -1,0 +1,14 @@
+Manifest-Version: 1.1
+Created-By: AlexDoberman
+Main-Class: PosPrinter
+Class-Path: .\posiflex\posiflex.jar 
+            .\posiflex\jpos17.jar 
+            .\posiflex\jpos18.jar 
+            .\posiflex\jcl.jar 
+            .\posiflex\xerces.jar 
+            .\posiflex\comm.jar 
+            .\posiflex\Serialio.jar
+            .\posiflex\saudisoft.jar
+            .\apache\commons-codec-1.9.jar
+
+

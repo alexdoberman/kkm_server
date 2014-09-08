@@ -6,5 +6,5 @@
 
 namespace launcher_tools
 {
-	TResult launch_pos_tool(const std::string& sPath, const std::vector<std::string> & vsArgs, int& resultCode , std::string &sStdOut);
+	TResult launch_pos_tool(const std::string& cCmd, int& resultCode , std::vector<std::string> &vsStdOut);
 } //launcher_tools

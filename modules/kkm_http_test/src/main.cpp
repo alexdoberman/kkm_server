@@ -12,12 +12,11 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <regex>
 
 using namespace Poco::Net;
 using namespace Poco;
 using namespace std;
-
-
 
 int main(int argc, char **argv)
 {

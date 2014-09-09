@@ -12,4 +12,5 @@ namespace kkm_reply_writer
 	boost::property_tree::ptree  write_reply(const TKKMModeReply& answer);
 	boost::property_tree::ptree  write_reply(const TExecCommandReply& answer);
 	boost::property_tree::ptree  write_reply(const TKKMStateReply & answer);
+	boost::property_tree::ptree  write_reply(const TExecPosUtilReply & answer);
 };

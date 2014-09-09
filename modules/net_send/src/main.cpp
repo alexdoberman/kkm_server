@@ -1,6 +1,11 @@
 #pragma once
-
 #include <iostream>
+#include <stdio.h>
+#include <sstream>
+
+#include <QString>
+#include <QByteArray>
+#include <QTextCodec>
 
 #include "Poco/Net/SocketAddress.h"
 #include "Poco/Net/StreamSocket.h"
@@ -10,10 +15,23 @@
 #include <Poco/Exception.h>
 
 #include "base64.h"
+   
 
 using namespace Poco::Net;
 using namespace Poco;
 using namespace std;
+
+inline QByteArray utf8ToDOS(std::string sIn)
+{
+	QByteArray baOut;
+	QString str(sIn.c_str());
+	QTextCodec *codec = QTextCodec::codecForName("IBM 866");
+	if (codec)
+		baOut  = codec->fromUnicode(str);
+	else
+		baOut = QByteArray(sIn.c_str());
+	return baOut;
+}
 
 int main(int argc, char **argv)
 {
@@ -33,18 +51,26 @@ int main(int argc, char **argv)
 		Poco::Net::StreamSocket socket(sa);
 		Poco::Net::SocketStream str(socket);
 
+		//FILE * pFile = fopen ("input_lines.bin", "wb");
+
 		for (size_t i = 2; i<argc; i++)
 		{
 			std::string sDecoded = base64_decode(argv[i]);
 			if (sDecoded.empty())
 				sDecoded = argv[i];
 
-			str << sDecoded << "\r\n";
+			QByteArray ba = utf8ToDOS(sDecoded);
+			//fwrite (ba.data() , sizeof(char), ba.length(), pFile);
+			str.write(ba.data(), ba.length());
+			str << "\r\n";
+			//str << sDecoded << "\r\n";
+			
 			std::cout <<"send :'"<<sDecoded<<"'"<<std::endl;
 		}
 		str.flush();
 		socket.shutdownSend();
 
+		//fclose (pFile);
 
 		//std::cout <<"----ANSVER----"<<std::endl;
 		//Poco::StreamCopier::copyStream(str, std::cout);
@@ -52,11 +78,11 @@ int main(int argc, char **argv)
 	}
 	catch (Exception &ex)
     {
-		cerr << ex.displayText() << endl;
+		std::cout <<"PosPrinter.Exception: err = "<<2001<<", errEx = "<<2001<<", desc = "<<ex.displayText() <<std::endl;
     }  
     catch (const std::exception &ex)
     {
-	    cerr << ex.what() << endl;
+		std::cout <<"PosPrinter.Exception: err = "<<2002<<", errEx = "<<2002<<", desc = "<<ex.what() <<std::endl;
     }
     return 0;
 }

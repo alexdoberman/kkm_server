@@ -421,8 +421,12 @@ TResult kkm_request_engine::process_request_jpos_print_text(const TKKMConfig& cf
 	}
 	while(false);
 
-	
-	TErrCode reply = {ret.nErr, nRet};
+	TExecPosUtilReply reply;
+		reply.nErrPos   = ret.nErr;
+		reply.nExErrPos = ret.nErrEx;
+		reply.sDesc     = ret.sDesk;
+		reply.nErr      = nRet; 
+
 	boost::property_tree::ptree pt = kkm_reply_writer::write_reply(reply);
 	boost::property_tree::write_json(ssOut, pt);
 

@@ -64,4 +64,15 @@ boost::property_tree::ptree  kkm_reply_writer::write_reply(const TKKMStateReply 
 	return pt;
 }
 
+boost::property_tree::ptree  kkm_reply_writer::write_reply(const TExecPosUtilReply & answer)
+{
+	boost::property_tree::ptree pt;
+	pt.put("body.err", answer.nErr);
+	pt.put("body.err_pos_printer", answer.nErrPos);
+	pt.put("body.ex_err_pos_printer", answer.nExErrPos);
+	pt.put("body.err_desc", answer.sDesc);
+	return pt;
+}
+
+
 

@@ -1,0 +1,3 @@
+@net_send_d.exe %* 
+@echo 
+

@@ -48,3 +48,13 @@ struct TKKMStateReply
 };
 
 
+//for exec pos/jpos util
+struct TExecPosUtilReply
+{
+    int32_t      nErrPos;
+	int32_t      nExErrPos;
+	std::string  sDesc;
+    TResult      nErr;
+};
+
+

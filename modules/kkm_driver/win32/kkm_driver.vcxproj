@@ -16,7 +16,6 @@
     <ClInclude Include="..\src\kkm_api.h" />
     <ClInclude Include="..\src\kkm_control.h" />
     <ClInclude Include="..\src\kkm_driver_def.h" />
-    <ClInclude Include="..\src\logmacros_def.h" />
     <ClInclude Include="..\src\str_conv.h" />
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +59,9 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(BuildsLibPath)</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(BuildsLibPath)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\tmp\$(Configuration)\</IntDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../include;$(BasePath)/common;$(IncludePath)</IncludePath>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\tmp\$(Configuration)\</IntDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../include;$(BasePath)/common;$(IncludePath)</IncludePath>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

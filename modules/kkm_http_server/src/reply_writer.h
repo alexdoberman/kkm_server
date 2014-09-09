@@ -2,7 +2,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "kkm_driver_type.h"
+#include <types.h>
 #include "reply_types.h"
 
 namespace kkm_reply_writer

@@ -25,5 +25,5 @@ KKM_DRIVER_LIB TResult getPortInfo(std::vector <TPortInfo> &vPortInfo)
 
 		vPortInfo.push_back(portInfo);
 	}
-	return kKKMResult_Success;
+	return kResult_Success;
 }

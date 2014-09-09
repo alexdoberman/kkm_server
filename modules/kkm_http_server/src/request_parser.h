@@ -4,7 +4,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "kkm_driver_type.h"
+#include <types.h>
 #include "request_types.h"
 
 namespace kkm_request_parser

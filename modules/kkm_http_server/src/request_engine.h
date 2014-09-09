@@ -1,7 +1,7 @@
 #pragma once
 #include <kkm_driver.h>
 
-#include "kkm_driver_type.h"
+#include <types.h>
 #include "request_types.h"
 
 namespace kkm_request

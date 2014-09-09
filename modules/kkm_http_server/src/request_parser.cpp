@@ -5,7 +5,7 @@
 
 TResult kkm_request_parser::parse_header(boost::property_tree::ptree pt, THeader& header)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -16,7 +16,7 @@ TResult kkm_request_parser::parse_header(boost::property_tree::ptree pt, THeader
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_header err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -26,7 +26,7 @@ TResult kkm_request_parser::parse_header(boost::property_tree::ptree pt, THeader
 TResult kkm_request_parser::parse_check(boost::property_tree::ptree pt, TCheck& check)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -85,7 +85,7 @@ TResult kkm_request_parser::parse_check(boost::property_tree::ptree pt, TCheck& 
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_check err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -95,7 +95,7 @@ TResult kkm_request_parser::parse_check(boost::property_tree::ptree pt, TCheck& 
 TResult kkm_request_parser::parse_cancellation_check(boost::property_tree::ptree pt, TCancellationCheck& check)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -118,7 +118,7 @@ TResult kkm_request_parser::parse_cancellation_check(boost::property_tree::ptree
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_cancellation_check err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -128,7 +128,7 @@ TResult kkm_request_parser::parse_cancellation_check(boost::property_tree::ptree
 TResult kkm_request_parser::parse_return_check(boost::property_tree::ptree pt, TReturnCheck& check)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -151,7 +151,7 @@ TResult kkm_request_parser::parse_return_check(boost::property_tree::ptree pt, T
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_return_check err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -161,7 +161,7 @@ TResult kkm_request_parser::parse_return_check(boost::property_tree::ptree pt, T
 TResult kkm_request_parser::parse_report_z(boost::property_tree::ptree pt, TReportZ& report)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -171,7 +171,7 @@ TResult kkm_request_parser::parse_report_z(boost::property_tree::ptree pt, TRepo
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_report_z err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -181,7 +181,7 @@ TResult kkm_request_parser::parse_report_z(boost::property_tree::ptree pt, TRepo
 TResult kkm_request_parser::parse_report_x(boost::property_tree::ptree pt, TReportX& report)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -192,7 +192,7 @@ TResult kkm_request_parser::parse_report_x(boost::property_tree::ptree pt, TRepo
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_report_x err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -202,7 +202,7 @@ TResult kkm_request_parser::parse_report_x(boost::property_tree::ptree pt, TRepo
 TResult kkm_request_parser::parse_exec_command(boost::property_tree::ptree pt, TExecCommand& cmd)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -212,7 +212,7 @@ TResult kkm_request_parser::parse_exec_command(boost::property_tree::ptree pt, T
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_exec_command err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);
@@ -222,7 +222,7 @@ TResult kkm_request_parser::parse_exec_command(boost::property_tree::ptree pt, T
 TResult kkm_request_parser::parse_print_text(boost::property_tree::ptree pt, TPrintText& cmd)
 {
 	using boost::property_tree::ptree;
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
         try
@@ -238,7 +238,7 @@ TResult kkm_request_parser::parse_print_text(boost::property_tree::ptree pt, TPr
         catch (std::exception const& e)
         {
 			LOG_ERR("kkm_request_parser::parse_print_text err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
         }
     }
     while(false);

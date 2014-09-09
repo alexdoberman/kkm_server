@@ -13,7 +13,7 @@
 
 TResult  kkm_request_engine::process_request_check(const TKKMConfig& cfg, const THeader &header, const TCheck & check, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -24,7 +24,7 @@ TResult  kkm_request_engine::process_request_check(const TKKMConfig& cfg, const 
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_check, connect  err: " << nRet);
 			break;
@@ -44,7 +44,7 @@ TResult  kkm_request_engine::process_request_check(const TKKMConfig& cfg, const 
 
 TResult kkm_request_engine::process_request_cancel_check(const TKKMConfig& cfg, const THeader &header, const TCancellationCheck & check, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -56,7 +56,7 @@ TResult kkm_request_engine::process_request_cancel_check(const TKKMConfig& cfg, 
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_check, connect  err: " << nRet);
 			break;
@@ -77,7 +77,7 @@ TResult kkm_request_engine::process_request_cancel_check(const TKKMConfig& cfg, 
 
 TResult kkm_request_engine::process_request_return_check(const TKKMConfig& cfg, const THeader &header, const TReturnCheck & check, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -89,7 +89,7 @@ TResult kkm_request_engine::process_request_return_check(const TKKMConfig& cfg, 
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_return_check, connect  err: " << nRet);
 			break;
@@ -110,7 +110,7 @@ TResult kkm_request_engine::process_request_return_check(const TKKMConfig& cfg, 
 
 TResult kkm_request_engine::process_request_report_x(const TKKMConfig& cfg, const THeader &header, const TReportX & report, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -122,7 +122,7 @@ TResult kkm_request_engine::process_request_report_x(const TKKMConfig& cfg, cons
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_report_x, connect  err: " << nRet);
 			break;
@@ -143,7 +143,7 @@ TResult kkm_request_engine::process_request_report_x(const TKKMConfig& cfg, cons
 
 TResult kkm_request_engine::process_request_report_z(const TKKMConfig& cfg, const THeader &header, const TReportZ & report, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -155,7 +155,7 @@ TResult kkm_request_engine::process_request_report_z(const TKKMConfig& cfg, cons
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_report_z, connect  err: " << nRet);
 			break;
@@ -176,7 +176,7 @@ TResult kkm_request_engine::process_request_report_z(const TKKMConfig& cfg, cons
 
 TResult kkm_request_engine::process_request_get_device(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	std::vector <TPortInfo> vPortInfo;
@@ -190,7 +190,7 @@ TResult kkm_request_engine::process_request_get_device(const TKKMConfig& cfg, co
 
 TResult kkm_request_engine::process_request_get_mode(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut)
 {
-	TResult nRet      = kKKMResult_Success;
+	TResult nRet      = kResult_Success;
 
 	uint8_t cMode     = 0x00;
 	uint8_t cSubMode  = 0x00;
@@ -206,7 +206,7 @@ TResult kkm_request_engine::process_request_get_mode(const TKKMConfig& cfg, cons
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_get_mode, connect  err: " << nRet);
 			break;
@@ -227,7 +227,7 @@ TResult kkm_request_engine::process_request_get_mode(const TKKMConfig& cfg, cons
 
 TResult kkm_request_engine::process_request_reset_mode(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -239,7 +239,7 @@ TResult kkm_request_engine::process_request_reset_mode(const TKKMConfig& cfg, co
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_reset_mode, connect  err: " << nRet);
 			break;
@@ -260,7 +260,7 @@ TResult kkm_request_engine::process_request_reset_mode(const TKKMConfig& cfg, co
 
 TResult kkm_request_engine::process_request_annulate_check(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -272,7 +272,7 @@ TResult kkm_request_engine::process_request_annulate_check(const TKKMConfig& cfg
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_annulate_check, connect  err: " << nRet);
 			break;
@@ -293,7 +293,7 @@ TResult kkm_request_engine::process_request_annulate_check(const TKKMConfig& cfg
 
 TResult kkm_request_engine::process_request_exec_command(const TKKMConfig& cfg, const THeader &header, const TExecCommand & cmd , std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -306,7 +306,7 @@ TResult kkm_request_engine::process_request_exec_command(const TKKMConfig& cfg, 
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_exec_command, connect  err: " << nRet);
 			break;
@@ -325,7 +325,7 @@ TResult kkm_request_engine::process_request_exec_command(const TKKMConfig& cfg, 
 
 TResult kkm_request_engine::process_request_get_kkm_state(const TKKMConfig& cfg, const THeader &header, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -340,7 +340,7 @@ TResult kkm_request_engine::process_request_get_kkm_state(const TKKMConfig& cfg,
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_get_kkm_state, connect  err: " << nRet);
 			break;
@@ -348,7 +348,7 @@ TResult kkm_request_engine::process_request_get_kkm_state(const TKKMConfig& cfg,
 		
 		TKKMState kkmState;	
 		nRet = spKKMControl->getKKMState(kkmState, nKKMErr);
-		if (nRet == kKKMResult_Success)
+		if (nRet == kResult_Success)
 		{
 			char buff[10];
 			sprintf(buff, "%u", kkmState.nKKMVersion);
@@ -375,7 +375,7 @@ TResult kkm_request_engine::process_request_get_kkm_state(const TKKMConfig& cfg,
 
 TResult kkm_request_engine::process_request_print_plain_text(const TKKMConfig& cfg, const THeader &header, const TPrintText& text, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	int nKKMErr     = 0;
 
 	TKKMInfo kkminfo;
@@ -387,7 +387,7 @@ TResult kkm_request_engine::process_request_print_plain_text(const TKKMConfig& c
 	do
 	{
 		nRet = spKKMControl->connect(kkminfo);
-		if(nRet != kKKMResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_print_plain_text, connect  err: " << nRet);
 			break;
@@ -408,12 +408,12 @@ TResult kkm_request_engine::process_request_print_plain_text(const TKKMConfig& c
 
 TResult kkm_request_engine::process_request_jpos_print_text(const TKKMConfig& cfg, const THeader &header, const TPrintText& text,  std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	TJPOSResult ret;
 	do
 	{
 		nRet = jpos_print(header.sDevice, text.vStringLine, ret);
-		if(nRet != kJPOSResult_Success)
+		if(nRet != kResult_Success)
 		{
 			LOG_ERR("kkm_request_engine::process_request_jpos_print_text, print  err: " << nRet);
 			break;

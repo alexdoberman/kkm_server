@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "kkm_driver_type.h"
+#include <types.h>
 #include "kkm_driver.h"
 
 struct TErrCode

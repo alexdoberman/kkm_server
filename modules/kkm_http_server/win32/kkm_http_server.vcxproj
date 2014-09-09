@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../kkm_driver/include;../../jpos_adapter/include;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
+    <IncludePath>../../kkm_driver/include;../../jpos_adapter/include;$(BasePath)/common;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
     <OutDir>$(BuildsLibPath)</OutDir>
     <IntDir>.\tmp\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
@@ -50,7 +50,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>.\tmp\$(Configuration)\</IntDir>
-    <IncludePath>../../kkm_driver/include;$(BoostPath);$(IncludePath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include</IncludePath>
+    <IncludePath>../../kkm_driver/include;../../jpos_adapter/include;$(BasePath)/common;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -81,7 +81,6 @@
     <ClInclude Include="..\src\kkm_server.h" />
     <ClInclude Include="..\src\kkm_server_def.h" />
     <ClInclude Include="..\src\kkm_server_engine.h" />
-    <ClInclude Include="..\src\logmacros_def.h" />
     <ClInclude Include="..\src\reply_types.h" />
     <ClInclude Include="..\src\reply_writer.h" />
     <ClInclude Include="..\src\request_engine.h" />

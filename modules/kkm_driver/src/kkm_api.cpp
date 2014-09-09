@@ -11,7 +11,7 @@ CKKMApi::~CKKMApi()
 
 TResult CKKMApi::exec_command(const QByteArray& baCmd, QByteArray& baAnswer, int nTimeOut)
 {
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 	LOG_DBG("exec_command ==>");
 
 	do
@@ -31,7 +31,7 @@ TResult CKKMApi::exec_command(const QByteArray& baCmd, QByteArray& baAnswer, int
 		sendACK();
 
 		nRet = loadKKMData(baAnswer);
-		if (nRet == kKKMResult_Success)
+		if (nRet == kResult_Success)
 		{
 			if (baAnswer.size() > 2)
 			{
@@ -39,7 +39,7 @@ TResult CKKMApi::exec_command(const QByteArray& baCmd, QByteArray& baAnswer, int
 			}
 			else
 			{
-				nRet = kKKMResult_ReadError;
+				nRet = kResult_ReadError;
 				LOG_ERR("incorrect answer size");
 				break;
 			}
@@ -59,7 +59,7 @@ TResult CKKMApi::sendACK()
     QByteArray ba(&defs::cACK, 1);
     m_pSerial->write(ba);
 	LOG_DBG("sendACK <==");
-    return kKKMResult_Success;
+    return kResult_Success;
 }
 
 TResult CKKMApi::sendENQ()
@@ -68,7 +68,7 @@ TResult CKKMApi::sendENQ()
     QByteArray ba(&defs::cENQ, 1);
     m_pSerial->write(ba);
 	LOG_DBG("sendENQ <==");
-    return kKKMResult_Success;
+    return kResult_Success;
 }
 
 TResult CKKMApi::sendEOT()
@@ -77,19 +77,19 @@ TResult CKKMApi::sendEOT()
 	QByteArray ba(&defs::cEOT, 1);
     m_pSerial->write(ba);
 	LOG_DBG("sendEOT <==");
-    return kKKMResult_Success;
+    return kResult_Success;
 }
 
 //TResult CKKMApi::readACK()
 //{
 //	LOG_DBG("readACK ==>");
 //	//todo append repeats
-//	TResult nRet = kKKMResult_Success;
+//	TResult nRet = kResult_Success;
 //
 //    QByteArray readData;
 //	//nRet = readChunk(readData, defs::nSendACKTimeout);
 //	nRet = readChunk(readData, defs::nReadDataTimeout);
-//	if (nRet == kKKMResult_Success)
+//	if (nRet == kResult_Success)
 //	{
 //		bool bCorrect = (readData == QByteArray(&defs::cACK,1));
 //		LOG_DBG("readACK : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");	
@@ -101,11 +101,11 @@ TResult CKKMApi::sendEOT()
 //TResult CKKMApi::readENQ(int nTimeOut)
 //{
 //	LOG_DBG("readENQ ==>");
-//	TResult nRet = kKKMResult_Success;
+//	TResult nRet = kResult_Success;
 //
 //	QByteArray readData;
 //	nRet = readChunk(readData, nTimeOut);
-//	if (nRet == kKKMResult_Success)
+//	if (nRet == kResult_Success)
 //	{
 //		bool bCorrect = (readData == QByteArray(&defs::cENQ,1));
 //		LOG_DBG("readENQ : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");	
@@ -118,16 +118,16 @@ TResult CKKMApi::sendEOT()
 //{
 //	LOG_DBG("readEOT ==>");
 //	//todo append repeats
-//	TResult nRet = kKKMResult_Success;
+//	TResult nRet = kResult_Success;
 //
 //	QByteArray readData;
 //	nRet = readChunk(readData, defs::nReadEOTTimeout);
-//	if (nRet == kKKMResult_Success)
+//	if (nRet == kResult_Success)
 //	{
 //		bool bCorrect = (readData == QByteArray(&defs::cEOT,1));
 //		LOG_DBG("readEOT : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");
 //		if (bCorrect)
-//			nRet = kKKMResult_ErrorAnswer;
+//			nRet = kResult_ErrorAnswer;
 //	}
 //
 //	LOG_DBG("readEOT <==");
@@ -138,12 +138,12 @@ TResult CKKMApi::readACK()
 {
 	LOG_DBG("readACK ==>");
 	//todo append repeats
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
     QByteArray readData;
 	//nRet = readChunk(readData, defs::nSendACKTimeout);
 	nRet = readChunk(readData, defs::nReadDataTimeout);
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		bool bCorrect = (readData == QByteArray(&defs::cACK,1));
 		LOG_DBG("readACK : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");	
@@ -151,7 +151,7 @@ TResult CKKMApi::readACK()
 		{
 			LOG_WRN("repeat readACK");
 			nRet = readChunk(readData, defs::nReadDataTimeout);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 				break;
 			bCorrect = (readData == QByteArray(&defs::cACK,1));
 			LOG_DBG("readACK : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");
@@ -164,11 +164,11 @@ TResult CKKMApi::readACK()
 TResult CKKMApi::readENQ(int nTimeOut)
 {
 	LOG_DBG("readENQ ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray readData;
 	nRet = readChunk(readData, nTimeOut);
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		bool bCorrect = (readData == QByteArray(&defs::cENQ,1));
 		LOG_DBG("readENQ : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");	
@@ -176,7 +176,7 @@ TResult CKKMApi::readENQ(int nTimeOut)
 		{
 			LOG_WRN("repeat readENQ");
 			nRet = readChunk(readData, nTimeOut);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 				break;
 			bCorrect = (readData == QByteArray(&defs::cENQ,1));
 			LOG_DBG("readENQ : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");
@@ -190,11 +190,11 @@ TResult CKKMApi::readEOT()
 {
 	LOG_DBG("readEOT ==>");
 	//todo append repeats
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray readData;
 	nRet = readChunk(readData, defs::nReadEOTTimeout);
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		bool bCorrect = (readData == QByteArray(&defs::cEOT,1));
 		LOG_DBG("readEOT : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");
@@ -203,7 +203,7 @@ TResult CKKMApi::readEOT()
 		{
 			LOG_WRN("repeat readEOT");
 			nRet = readChunk(readData, defs::nReadEOTTimeout);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 				break;
 			bCorrect = (readData == QByteArray(&defs::cEOT,1));
 			LOG_DBG("readEOT : "<<bCorrect <<" '"<<ba2hex(readData)<<"'");
@@ -217,13 +217,13 @@ TResult CKKMApi::readEOT()
 TResult CKKMApi::sendENQ_readACK()
 {
 	LOG_DBG("sendENQ_readACK ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	sendENQ();
 	nRet = readACK();
 
 	int nRepeatCount = 2;
-	while  (nRet != kKKMResult_Success && nRepeatCount <= 5)
+	while  (nRet != kResult_Success && nRepeatCount <= 5)
 	{
 		LOG_DBG("repeat sendENQ_readACK i = " << nRepeatCount);
 		sendENQ();
@@ -237,7 +237,7 @@ TResult CKKMApi::sendENQ_readACK()
 
 TResult CKKMApi::readChunk(QByteArray& baOutData, int nTimeOut)
 {
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 	QByteArray readData;
 	readData.append(m_pSerial->readAll());
 	if (m_pSerial->waitForReadyRead(nTimeOut))
@@ -249,12 +249,12 @@ TResult CKKMApi::readChunk(QByteArray& baOutData, int nTimeOut)
 	if (m_pSerial->error() == QSerialPort::ReadError) 
 	{
 		LOG_ERR("readChunk , Failed to read from port '"<<m_kkmDesc.pszPortName<<"' , error: "<<m_pSerial->errorString().toStdString());
-		nRet = kKKMResult_ReadError;
+		nRet = kResult_ReadError;
 	} 
 	else if (m_pSerial->error() == QSerialPort::TimeoutError && readData.isEmpty()) 
 	{
 		LOG_ERR("readChunk , No data was currently available for reading from port '"<<m_kkmDesc.pszPortName<<"'");
-		nRet = kKKMResult_Timeout;
+		nRet = kResult_Timeout;
 	}
 	return nRet;
 }
@@ -262,14 +262,14 @@ TResult CKKMApi::readChunk(QByteArray& baOutData, int nTimeOut)
 TResult CKKMApi::loadKKMData(QByteArray& baOutData)
 {
 	LOG_DBG("loadKKMData ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 	
 	do
 	{
 		QByteArray readData;
 		QByteArray baPacket;
 
-		if ((nRet = readChunk(readData, defs::nReadDataTimeout)) != kKKMResult_Success)
+		if ((nRet = readChunk(readData, defs::nReadDataTimeout)) != kResult_Success)
 			break;
 		
 		char cPrevByte = 0x0;
@@ -298,7 +298,7 @@ TResult CKKMApi::loadKKMData(QByteArray& baOutData)
 		if(!bSTX)
 		{
 			LOG_DBG("CKKMApi::loadKKMData, can`t find STX byte.");
-			nRet = kKKMResult_ReadError;
+			nRet = kResult_ReadError;
 			break;
 		}
 
@@ -307,7 +307,7 @@ TResult CKKMApi::loadKKMData(QByteArray& baOutData)
 			do
 			{
 				QByteArray readDataEx;
-				if ((nRet = readChunk(readDataEx, defs::nReadByteTimeout)) != kKKMResult_Success)
+				if ((nRet = readChunk(readDataEx, defs::nReadByteTimeout)) != kResult_Success)
 					break;
 
 				cPrevByte = 0x0;
@@ -325,7 +325,7 @@ TResult CKKMApi::loadKKMData(QByteArray& baOutData)
 				}
 			}
 			while(!bPacketComplete);
-			if(nRet != kKKMResult_Success)
+			if(nRet != kResult_Success)
 				break;
 		}
 

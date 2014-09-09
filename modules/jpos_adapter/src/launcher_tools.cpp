@@ -16,7 +16,7 @@ namespace launcher_tools
 
 TResult launch_pos_tool(const std::string& sCmd, int& resultCode , std::vector<std::string> &vsStdOut)
 {
-	TResult nRet = kJPOSResult_Success;
+	TResult nRet = kResult_Success;
     do
     {
 		LOG_INF("launch cmd : '" <<sCmd<< "'");
@@ -58,7 +58,7 @@ TResult launch_pos_tool(const std::string& sCmd, int& resultCode , std::vector<s
         else
         {
 			LOG_ERR("Error, wait cmd: '" <<sCmd<<"'");
-            nRet =  kJPOSResult_Fail;
+            nRet =  kResult_Fail;
             break;
         }
     }

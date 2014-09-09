@@ -12,7 +12,7 @@
 
 JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vector<std::string>& vLines, TJPOSResult& ret)
 {
-    TResult nRet = kJPOSResult_Success;
+    TResult nRet = kResult_Success;
 	try
     {
 			//clear out
@@ -22,7 +22,12 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
 
         do
         {
+			//HACK
 			std::string sCmd ="run_jpos.bat ";
+			if (sDevName.find("http://") != std::string::npos)
+				sCmd = "run_net_send.bat ";
+
+			
 			sCmd.append(sDevName);
 
 			std::for_each(vLines.begin() , vLines.end() , [&sCmd](const std::string & s)
@@ -34,10 +39,10 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
 			//read ansver
 			int nRetCode = 0;
 			std::vector<std::string> vsStdOut;
-			if ((nRet = launcher_tools::launch_pos_tool(sCmd, nRetCode, vsStdOut)) != kJPOSResult_Success)
+			if ((nRet = launcher_tools::launch_pos_tool(sCmd, nRetCode, vsStdOut)) != kResult_Success)
             {
 				LOG_ERR("error when launch cmd: '"<<sCmd<<"'");
-				nRet = kJPOSResult_Fail;
+				nRet = kResult_Fail;
                 break;
             }
 		
@@ -66,14 +71,14 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
 						catch( boost::bad_lexical_cast const& ) 
 						{
 							LOG_ERR("Bad cast.");
-							nRet = kJPOSResult_Fail;
+							nRet = kResult_Fail;
 							break;
 						}
 					}
 					else
 					{
 						LOG_ERR("Bad ansver.");
-						nRet = kJPOSResult_Fail;
+						nRet = kResult_Fail;
 						break;
 					}
 					break;
@@ -85,13 +90,13 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
     }
     catch(const std::exception & ex)
     {
-		LOG_ERR("launch pos.jar exception , what = "<<ex.what());
-        nRet = kJPOSResult_Fail;
+		LOG_ERR("launch exception , what = "<<ex.what());
+        nRet = kResult_Fail;
     }
     catch(...)
     {
-		LOG_ERR("launch pos.jar unknown exception");
-        nRet = kJPOSResult_Fail;
+		LOG_ERR("launch unknown exception");
+        nRet = kResult_Fail;
     }
     return nRet;
 }

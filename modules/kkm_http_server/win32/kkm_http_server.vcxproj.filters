@@ -30,9 +30,6 @@
     <ClInclude Include="..\src\kkm_server_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\logmacros_def.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\reply_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>

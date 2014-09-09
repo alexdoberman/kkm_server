@@ -18,7 +18,7 @@ CRequestProcessor::~CRequestProcessor()
 
 void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 {
-	TResult nRet    = kKKMResult_Success;
+	TResult nRet    = kResult_Success;
 	do
 	{
 		THeader header;
@@ -27,7 +27,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 		{
 			boost::property_tree::read_json(ssIn, pt);
 			nRet = kkm_request_parser::parse_header(pt, header);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("RequestProcessor::process_request, parse_header  err: " << nRet);
 				break;
@@ -36,7 +36,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 		catch (std::exception const& e)
 		{
 			LOG_ERR("kkm_request_engine::process_request err: " << e.what());
-			nRet = kKKMResult_ParseError;
+			nRet = kResult_ParseError;
 			break;
 		}
 		
@@ -47,7 +47,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TCheck check;
 			nRet = kkm_request_parser::parse_check(pt, check);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_check err: " << nRet);
 				break;
@@ -61,7 +61,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TReturnCheck check;
 			nRet = kkm_request_parser::parse_return_check(pt, check);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_return_check err: " << nRet);
 				break;
@@ -75,7 +75,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TCancellationCheck check;
 			nRet = kkm_request_parser::parse_cancellation_check(pt, check);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_cancellation_check err: " << nRet);
 				break;
@@ -89,7 +89,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TReportZ report;
 			nRet = kkm_request_parser::parse_report_z(pt, report);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_report_z err: " << nRet);
 				break;
@@ -103,7 +103,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TReportX report;
 			nRet = kkm_request_parser::parse_report_x(pt, report);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_report_x err: " << nRet);
 				break;
@@ -143,7 +143,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TExecCommand cmd;
 			nRet = kkm_request_parser::parse_exec_command(pt, cmd);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_exec_command err: " << nRet);
 				break;
@@ -164,7 +164,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TPrintText text;
 			nRet = kkm_request_parser::parse_print_text(pt, text);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_print_text err: " << nRet);
 				break;
@@ -178,7 +178,7 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 
 			TPrintText text;
 			nRet = kkm_request_parser::parse_print_text(pt, text);
-			if (nRet != kKKMResult_Success)
+			if (nRet != kResult_Success)
 			{
 				LOG_ERR("kkm_request_engine::parse_print_text err: " << nRet);
 				break;
@@ -188,14 +188,14 @@ void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 		else
 		{
 			//unknown request
-			nRet = kKKMResult_UnknownRequest;
+			nRet = kResult_UnknownRequest;
 			LOG_ERR("kkm_request_engine:: unknown request err: " << nRet);
 			break;
 		}
     }
     while(false);
 
-	if (nRet != kKKMResult_Success)
+	if (nRet != kResult_Success)
 	{
 		TErrCode reply = {0, nRet};
 		boost::property_tree::ptree pt = kkm_reply_writer::write_reply(reply);

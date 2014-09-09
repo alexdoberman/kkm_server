@@ -8,16 +8,7 @@
 #else
 #    define JPOSADAPTER_DLL __declspec(dllimport) 
 #endif
-
-typedef int32_t             TResult;
-enum EJPOSResult
-{
-    kJPOSResult_Success = 0,
-    kJPOSResult_Fail,               //Procedure failed for unknown reason;
-
-
-    kJPOSResult_ForceDWORD                    = 0x7FFFFFFF,
-};
+#include <types.h>
 
 struct TJPOSResult
 {

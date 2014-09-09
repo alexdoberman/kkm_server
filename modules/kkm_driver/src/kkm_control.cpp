@@ -40,7 +40,7 @@ TResult CKKMControl::connect(TKKMInfo kkmDesc)
 {
 	m_kkmDesc = kkmDesc;
 
-    TResult nRet = kKKMResult_Success;
+    TResult nRet = kResult_Success;
 	m_bConnected = false;
 
     LOG_DBG("connect ==>");
@@ -50,7 +50,7 @@ TResult CKKMControl::connect(TKKMInfo kkmDesc)
         if (m_pSerial->open(QIODevice::ReadWrite) == false) 
         {
 			LOG_ERR("Error open port = '"<<m_kkmDesc.pszPortName<<"'"<<m_pSerial->errorString().toStdString());
-			nRet = kKKMResult_ErrorOpenPort;
+			nRet = kResult_ErrorOpenPort;
 			break;
 		}
 
@@ -62,7 +62,7 @@ TResult CKKMControl::connect(TKKMInfo kkmDesc)
         {
 			LOG_ERR("Error configure port = '"<<m_kkmDesc.pszPortName<<"'"<<m_pSerial->errorString().toStdString());
 			m_pSerial->close();
-			nRet = kKKMResult_ErrorConfigurePort;
+			nRet = kResult_ErrorConfigurePort;
 			break;
         } 
 		
@@ -82,13 +82,13 @@ TResult CKKMControl::disconnect()
 	LOG_DBG("disconnect ==>");
     m_pSerial->close();
 	LOG_DBG("disconnect <==");
-	return kKKMResult_Success;
+	return kResult_Success;
 }
 
 TResult CKKMControl::exec_command(const std::string & sCmd, std::string& sAnsver)
 {
 	LOG_DBG("CKKMControl::exec_command ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand = hex2ba(sCmd.c_str());
 	QByteArray baAnswer;
@@ -105,7 +105,7 @@ TResult CKKMControl::exec_command(const std::string & sCmd, std::string& sAnsver
 TResult CKKMControl::setMode(uint8_t cMode, uint32_t nPassword, int& nErrCode)
 {
 	LOG_DBG("setMode ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x56);
@@ -116,12 +116,12 @@ TResult CKKMControl::setMode(uint8_t cMode, uint32_t nPassword, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("setMode <==");
 
@@ -131,7 +131,7 @@ TResult CKKMControl::setMode(uint8_t cMode, uint32_t nPassword, int& nErrCode)
 TResult CKKMControl::resetMode(int& nErrCode)
 {
 	LOG_DBG("resetMode ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x48);
@@ -140,12 +140,12 @@ TResult CKKMControl::resetMode(int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode =(TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("resetMode <==");
 
@@ -155,7 +155,7 @@ TResult CKKMControl::resetMode(int& nErrCode)
 TResult CKKMControl::getMode(uint8_t& cMode, uint8_t& cSubMode, uint8_t& nFlag, int& nErrCode)    
 {
 	LOG_DBG("getMode ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x45);
@@ -164,7 +164,7 @@ TResult CKKMControl::getMode(uint8_t& cMode, uint8_t& cSubMode, uint8_t& nFlag, 
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 		{
@@ -173,7 +173,7 @@ TResult CKKMControl::getMode(uint8_t& cMode, uint8_t& cSubMode, uint8_t& nFlag, 
 			nFlag    = baAnswer.at(2);
 		}
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("getMode <==");
 	return nRet;
@@ -182,7 +182,7 @@ TResult CKKMControl::getMode(uint8_t& cMode, uint8_t& cSubMode, uint8_t& nFlag, 
 TResult CKKMControl::getKKMState(TKKMState& kkmState, int& nErrCode)
 {
 	LOG_DBG("getKKMState ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x3F);
@@ -194,7 +194,7 @@ TResult CKKMControl::getKKMState(TKKMState& kkmState, int& nErrCode)
 	
 	TKKMStateRaw kkmStateRaw;
 	memset(&kkmStateRaw, 0, sizeof(kkmStateRaw));
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 30 && baAnswer.at(0) == (char)0x44)
 		{
@@ -214,7 +214,7 @@ TResult CKKMControl::getKKMState(TKKMState& kkmState, int& nErrCode)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		}
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("getKKMState <==");
 	return nRet;
@@ -224,7 +224,7 @@ TResult CKKMControl::getKKMState(TKKMState& kkmState, int& nErrCode)
 TResult CKKMControl::printLine(const std::string & sText, int& nErrCode)
 {
 	LOG_DBG("printLine ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x4C);
@@ -234,12 +234,12 @@ TResult CKKMControl::printLine(const std::string & sText, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("printLine <==");
 	return nRet;
@@ -248,7 +248,7 @@ TResult CKKMControl::printLine(const std::string & sText, int& nErrCode)
 TResult CKKMControl::openSession(const std::string & sText, int& nErrCode)
 {
 	LOG_DBG("openSession ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x9A);
@@ -259,12 +259,12 @@ TResult CKKMControl::openSession(const std::string & sText, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("openSession <==");
 	return nRet;
@@ -273,7 +273,7 @@ TResult CKKMControl::openSession(const std::string & sText, int& nErrCode)
 TResult CKKMControl::openCheck(uint8_t cTestMode, uint8_t cCheckType,  int& nErrCode)
 {
 	LOG_DBG("openCheck ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x92);
@@ -284,12 +284,12 @@ TResult CKKMControl::openCheck(uint8_t cTestMode, uint8_t cCheckType,  int& nErr
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("openCheck <==");
 	return nRet;
@@ -298,7 +298,7 @@ TResult CKKMControl::openCheck(uint8_t cTestMode, uint8_t cCheckType,  int& nErr
 TResult CKKMControl::cancelCheck( int& nErrCode)
 {
 	LOG_DBG("cancelCheck ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x59);
@@ -307,12 +307,12 @@ TResult CKKMControl::cancelCheck( int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode)baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("cancelCheck <==");
 	return nRet;
@@ -321,7 +321,7 @@ TResult CKKMControl::cancelCheck( int& nErrCode)
 TResult CKKMControl::cashIn(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 {
 	LOG_DBG("cashIn ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x49);
@@ -332,12 +332,12 @@ TResult CKKMControl::cashIn(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode =(TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("cashIn <==");
 	return nRet;
@@ -346,7 +346,7 @@ TResult CKKMControl::cashIn(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 TResult CKKMControl::cashOut(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 {
 	LOG_DBG("cashOut ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x4F);
@@ -357,12 +357,12 @@ TResult CKKMControl::cashOut(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode)baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("cashOut <==");
 	return nRet;
@@ -371,7 +371,7 @@ TResult CKKMControl::cashOut(uint8_t cTestMode, uint32_t nSumm, int& nErrCode)
 TResult CKKMControl::registaration(uint8_t cTestMode, uint32_t nPrice, uint32_t nQuantity, uint8_t  nDepartment, int& nErrCode)
 {
 	LOG_DBG("registaration ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x52);
@@ -384,12 +384,12 @@ TResult CKKMControl::registaration(uint8_t cTestMode, uint32_t nPrice, uint32_t 
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("registaration <==");
 	return nRet;
@@ -398,7 +398,7 @@ TResult CKKMControl::registaration(uint8_t cTestMode, uint32_t nPrice, uint32_t 
 TResult CKKMControl::return_(uint8_t cTestMode,uint32_t nPrice, uint32_t nQuantity, int& nErrCode)
 {
 	LOG_DBG("return_ ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x57);
@@ -410,12 +410,12 @@ TResult CKKMControl::return_(uint8_t cTestMode,uint32_t nPrice, uint32_t nQuanti
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("return_ <==");
 	return nRet;
@@ -424,7 +424,7 @@ TResult CKKMControl::return_(uint8_t cTestMode,uint32_t nPrice, uint32_t nQuanti
 TResult CKKMControl::cancellation(uint8_t cTestMode,uint32_t nPrice, uint32_t nQuantity, int& nErrCode)
 {
 	LOG_DBG("cancellation ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x41);
@@ -436,12 +436,12 @@ TResult CKKMControl::cancellation(uint8_t cTestMode,uint32_t nPrice, uint32_t nQ
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode =(TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("cancellation <==");
 	return nRet;
@@ -450,7 +450,7 @@ TResult CKKMControl::cancellation(uint8_t cTestMode,uint32_t nPrice, uint32_t nQ
 TResult CKKMControl::discount(uint8_t cTestMode, uint8_t cArea, uint8_t cType, uint8_t cSign, uint32_t nValue, int& nErrCode)
 {
 	LOG_DBG("discount ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x43);
@@ -468,12 +468,12 @@ TResult CKKMControl::discount(uint8_t cTestMode, uint8_t cArea, uint8_t cType, u
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode =(TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("discount <==");
 	return nRet;
@@ -482,7 +482,7 @@ TResult CKKMControl::discount(uint8_t cTestMode, uint8_t cArea, uint8_t cType, u
 TResult CKKMControl::closeCheck(uint8_t cTestMode, uint8_t cTypeClose, uint32_t nSumm,  int& nErrCode)
 {
 	LOG_DBG("closeCheck ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x4A);
@@ -494,12 +494,12 @@ TResult CKKMControl::closeCheck(uint8_t cTestMode, uint8_t cTypeClose, uint32_t 
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer, 20000);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode)baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 	LOG_DBG("closeCheck <==");
 	return nRet;
@@ -509,7 +509,7 @@ TResult CKKMControl::reportZ(int& nErrCode)
 {
 	//todo
 	LOG_DBG("reportZ ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x5A);
@@ -518,12 +518,12 @@ TResult CKKMControl::reportZ(int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer, 40000);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode =(TKKMErrorCode) baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 
 
@@ -533,7 +533,7 @@ TResult CKKMControl::reportZ(int& nErrCode)
 	uint8_t nFlag     = 0x00;  
 	
 
-	while(nRet == kKKMResult_Success && nErrCode == 0)
+	while(nRet == kResult_Success && nErrCode == 0)
 	{
 		m_sleep(500);
 		int nErr          = 0;
@@ -542,7 +542,7 @@ TResult CKKMControl::reportZ(int& nErrCode)
 			break;
 	}
 
-	if (nRet == kKKMResult_Success && nErrCode == 0)
+	if (nRet == kResult_Success && nErrCode == 0)
 	{
 		if ((cMode != 7) || (cSubMode != 1))
 		{
@@ -555,7 +555,7 @@ TResult CKKMControl::reportZ(int& nErrCode)
 		}
 		else
 		{
-			while(nRet == kKKMResult_Success)
+			while(nRet == kResult_Success)
 			{
 				m_sleep(500);
 				int nErr          = 0;
@@ -572,7 +572,7 @@ TResult CKKMControl::reportZ(int& nErrCode)
 TResult CKKMControl::reportX(uint8_t cReportType, int& nErrCode)
 {
 	LOG_DBG("reportX ==>");
-	TResult nRet = kKKMResult_Success;
+	TResult nRet = kResult_Success;
 
 	QByteArray baCommand;
 		baCommand.append(0x67);
@@ -582,12 +582,12 @@ TResult CKKMControl::reportX(uint8_t cReportType, int& nErrCode)
 	CKKMApi kkmApi(m_pSerial, m_kkmDesc);
 	nRet = kkmApi.exec_command(baCommand, baAnswer, 40000);
 	
-	if (nRet == kKKMResult_Success)
+	if (nRet == kResult_Success)
 	{
 		if (baAnswer.size() == 3 && baAnswer.at(0) == (char)0x55)
 			nErrCode = (TKKMErrorCode)baAnswer.at(1);
 		else
-			nRet = kKKMResult_ErrorAnswer;
+			nRet = kResult_ErrorAnswer;
 	}
 
 
@@ -597,7 +597,7 @@ TResult CKKMControl::reportX(uint8_t cReportType, int& nErrCode)
 	uint8_t nFlag     = 0x00;  
 	
 
-	while(nRet == kKKMResult_Success && nErrCode == 0)
+	while(nRet == kResult_Success && nErrCode == 0)
 	{
 		m_sleep(500);
 		int nErr          = 0;
@@ -606,7 +606,7 @@ TResult CKKMControl::reportX(uint8_t cReportType, int& nErrCode)
 			break;
 	}
 
-	if (nRet == kKKMResult_Success && nErrCode == 0)
+	if (nRet == kResult_Success && nErrCode == 0)
 	{
 		if ((cMode == 2) && (cSubMode == 0))
 		{

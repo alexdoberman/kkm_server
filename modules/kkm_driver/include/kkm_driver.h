@@ -10,7 +10,7 @@
 #endif 
 
 
-#include "kkm_driver_type.h"
+#include "types.h"
 
 #include <stdint.h>
 #include <string>

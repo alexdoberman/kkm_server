@@ -17,6 +17,7 @@ public:
 public:
     void process(std::istream & ssIn, std::ostream& ssOut);
 	TMutex& get_lock(std::string sPortId);
+	const TKKMConfig& get_cfg() const;
 private:
 	
 	std::map <std::string , std::unique_ptr<TMutex> > m_mapMtx;

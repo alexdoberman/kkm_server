@@ -58,10 +58,17 @@ public:
 		LOG_DBG("---------------------------------------------------------------------------------");
 
 		response.setChunkedTransferEncoding(true); 
-		response.setContentType("text/html");
+		response.setContentType(m_refProc.get_cfg().sResponseContentType);
 		std::ostream& ostr = response.send();
 
+		if (m_refProc.get_cfg().bResponseWrapHack)
+			ostr<< "response(";
+
 		m_refProc.process(ssRequest, ostr);
+
+		if (m_refProc.get_cfg().bResponseWrapHack)
+			ostr<< ")";
+
 	}
 private:
 	CRequestProcessor& m_refProc;

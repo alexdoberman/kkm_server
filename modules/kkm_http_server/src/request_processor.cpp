@@ -16,6 +16,11 @@ CRequestProcessor::CRequestProcessor(TKKMConfig cfg)
 CRequestProcessor::~CRequestProcessor()
 {}
 
+const TKKMConfig& CRequestProcessor::get_cfg() const
+{
+	return m_cfg;
+}
+
 void CRequestProcessor::process(std::istream & ssIn, std::ostream& ssOut)
 {
 	TResult nRet    = kResult_Success;

@@ -38,10 +38,13 @@ protected:
 	{
 		//read config
 		TKKMConfig cfg;
-		cfg.nKKM_HTTP_Port  = (unsigned short) config().getInt("KKM_HTTP_Server.port", 9980);
-		cfg.nKKMPassword    = (uint32_t) config().getInt("KKM_HTTP_Server.password", 0);
+		cfg.nKKM_HTTP_Port        = (unsigned short) config().getInt("KKM_HTTP_Server.port", 9980);
+		cfg.nKKMPassword          = (uint32_t) config().getInt("KKM_HTTP_Server.password", 0);
+		cfg.sResponseContentType  = config().getString("KKM_HTTP_Server.response_content_type", "application/json");
+		cfg.bResponseWrapHack     = (bool) config().getInt("KKM_HTTP_Server.response_wrap_hack", 0);
 
 		std::cout << "KKM Server start, port : "<<cfg.nKKM_HTTP_Port <<std::endl;	
+
 		// set-up a server socket
 		ServerSocket svs(cfg.nKKM_HTTP_Port);
 		// set-up a HTTPServer instance

@@ -3,9 +3,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <IntermediateDir>$(BasePath)tmp\</IntermediateDir>
-    <BasePath>d:\github\kkm_server\</BasePath>
-    <ThirdPartyDir>d:\svn\3rdparty\</ThirdPartyDir>
-    <BoostPath>d:\svn\3rdparty\boost_1_56_0\</BoostPath>
+    <BasePath>e:\kkm_server\kkm_server\</BasePath>
+    <ThirdPartyDir>e:\svn\3rdparty\</ThirdPartyDir>
+    <BoostPath>e:\svn\3rdparty\boost_1_55_0\</BoostPath>
     <BuildsLibPath>$(BasePath)builds\lib\</BuildsLibPath>
   </PropertyGroup>
   <PropertyGroup />

@@ -6,7 +6,7 @@
 #include <QString>
 #include <QByteArray>
 #include <QTextCodec>
-#include <QRegExp>
+//#include <QRegExp>
 
 #include "Poco/Net/SocketAddress.h"
 #include "Poco/Net/StreamSocket.h"
@@ -22,20 +22,20 @@ using namespace Poco::Net;
 using namespace Poco;
 using namespace std;
 
-inline QString decodeEntities( const QString& src )
-{
-    QString ret(src);
-    QRegExp re("&#([0-9]+);");
-    re.setMinimal(true);
-
-    int pos = 0;
-    while( (pos = re.indexIn(src, pos)) != -1 )
-    {
-        ret = ret.replace(re.cap(0), QChar(re.cap(1).toInt(0,10)));
-        pos += re.matchedLength();
-    }
-    return ret;
-}
+//inline QString decodeEntities( const QString& src )
+//{
+//    QString ret(src);
+//    QRegExp re("&#([0-9]+);");
+//    re.setMinimal(true);
+//
+//    int pos = 0;
+//    while( (pos = re.indexIn(src, pos)) != -1 )
+//    {
+//        ret = ret.replace(re.cap(0), QChar(re.cap(1).toInt(0,10)));
+//        pos += re.matchedLength();
+//    }
+//    return ret;
+//}
 inline QByteArray utf8ToDOS(std::string sIn)
 {
 	QByteArray baOut;
@@ -74,8 +74,8 @@ int main(int argc, char **argv)
 			if (sDecoded.empty())
 				sDecoded = argv[i];
 
-            QString  sDU = decodeEntities(QString(sDecoded.c_str()));
-			QByteArray ba = utf8ToDOS(sDU.toStdString());
+            //QString  sDU = decodeEntities(QString(sDecoded.c_str()));
+			QByteArray ba = utf8ToDOS(sDecoded);
 			//fwrite (ba.data() , sizeof(char), ba.length(), pFile);
 			str.write(ba.data(), ba.length());
 			str << "\r\n";

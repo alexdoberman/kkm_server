@@ -6,9 +6,11 @@
 #include <boost/lexical_cast.hpp>
 
 #include <base64.h>
+#include <entities.h>
 
 #include "launcher_tools.h"
 #include "jposadapter_def.h"
+
 
 JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vector<std::string>& vLines, TJPOSResult& ret)
 {
@@ -33,7 +35,8 @@ JPOSADAPTER_DLL TResult jpos_print(const std::string & sDevName, const std::vect
 			std::for_each(vLines.begin() , vLines.end() , [&sCmd](const std::string & s)
 				{
 					sCmd.append(" "); 
-					sCmd.append( base64_encode((const unsigned char*) s.c_str(), s.length())); 
+					std::string sEntiti = decode_html_entities_utf8(s);
+					sCmd.append( base64_encode((const unsigned char*) sEntiti.c_str(), sEntiti.length())); 
 			});
 
 			//read ansver

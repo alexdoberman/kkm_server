@@ -152,3 +152,5 @@ KKM_HTTP_Server.response_content_type = application/json
 KKM_HTTP_Server.response_wrap_hack = 0
 если KKM_HTTP_Server.response_wrap_hack = 1 то ответ обрамляется в response(....)
 KKM_HTTP_Server.response_content_type - задает content type
+
+

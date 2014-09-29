@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpos_adapter", "..\..\jpos_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "net_send", "..\..\net_send\win32\net_send.vcxproj", "{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sys_helper", "..\..\sys_helper\win32\sys_helper.vcxproj", "{B7329376-E6AA-495E-B6EA-B974306C6BB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,10 @@ Global
 		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Debug|Win32.Build.0 = Debug|Win32
 		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Release|Win32.ActiveCfg = Release|Win32
 		{4D6A8766-FBEB-4530-BE74-2D6236BF48F8}.Release|Win32.Build.0 = Release|Win32
+		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Debug|Win32.Build.0 = Debug|Win32
+		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Release|Win32.ActiveCfg = Release|Win32
+		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

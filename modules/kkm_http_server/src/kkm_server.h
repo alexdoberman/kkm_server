@@ -13,7 +13,7 @@
 #include "config.h"
 
 #include <sstream>
-
+#include <iostream>
 
 
 using Poco::Net::HTTPRequestHandler;

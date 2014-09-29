@@ -44,7 +44,7 @@
     <OutDir>$(BuildsLibPath)</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IncludePath>$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(BoostPath);$(BasePath)/common;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(BoostPath)lib\;$(LibraryPath)</LibraryPath>
     <IntDir>.\tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

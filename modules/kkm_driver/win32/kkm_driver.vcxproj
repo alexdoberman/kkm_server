@@ -23,6 +23,11 @@
     <ClCompile Include="..\src\kkm_control.cpp" />
     <ClCompile Include="..\src\kkm_driver.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\sys_helper\win32\sys_helper.vcxproj">
+      <Project>{b7329376-e6aa-495e-b6ea-b974306c6bb4}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{830B4B9D-E14B-419D-A967-29E6225580FE}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
@@ -59,10 +64,11 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(BuildsLibPath)</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(BuildsLibPath)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\tmp\$(Configuration)\</IntDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../include;$(BasePath)/common;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../include;$(BasePath)/common;$(BasePath)modules/sys_helper/include;$(BoostPath);$(IncludePath)</IncludePath>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\tmp\$(Configuration)\</IntDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../include;$(BasePath)/common;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../include;$(BasePath)/common;$(BasePath)modules/sys_helper/include;$(IncludePath)</IncludePath>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(BoostPath)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

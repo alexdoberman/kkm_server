@@ -11,17 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A10C4E76-D6BA-49DD-8C01-032EFD3906E8}</ProjectGuid>
-    <RootNamespace>kkm_http_server</RootNamespace>
+    <ProjectGuid>{B7329376-E6AA-495E-B6EA-B974306C6BB4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>sys_helper</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -39,76 +40,55 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../kkm_driver/include;../../jpos_adapter/include;$(BasePath)/common;$(BasePath)modules/sys_helper/include;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(BuildsLibPath)</OutDir>
     <IntDir>.\tmp\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(BoostPath)lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>../include;$(BasePath)/common;$(BoostPath);$(IncludePath)</IncludePath>
+    <LibraryPath>$(BoostPath)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>$(BuildsLibPath)</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>.\tmp\$(Configuration)\</IntDir>
-    <IncludePath>../../kkm_driver/include;../../jpos_adapter/include;$(BasePath)/common;$(BasePath)modules/sys_helper/include;$(BoostPath);$(ThirdPartyDir)poco-1.4.6p4\Foundation\include;$(ThirdPartyDir)poco-1.4.6p4\XML\include;$(ThirdPartyDir)poco-1.4.6p4\Util\include;$(ThirdPartyDir)poco-1.4.6p4\Net\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ThirdPartyDir)poco-1.4.6p4\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../include;$(BasePath)/common;$(BoostPath);$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <LibraryPath>$(BoostPath)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SYS_HELPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SYS_HELPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\config.h" />
-    <ClInclude Include="..\src\kkm_application.h" />
-    <ClInclude Include="..\src\kkm_server.h" />
-    <ClInclude Include="..\src\kkm_server_def.h" />
-    <ClInclude Include="..\src\kkm_server_engine.h" />
-    <ClInclude Include="..\src\reply_types.h" />
-    <ClInclude Include="..\src\reply_writer.h" />
-    <ClInclude Include="..\src\request_engine.h" />
-    <ClInclude Include="..\src\request_parser.h" />
-    <ClInclude Include="..\src\request_processor.h" />
-    <ClInclude Include="..\src\request_types.h" />
+    <ClInclude Include="..\include\sys_helper.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\kkm_server.cpp" />
-    <ClCompile Include="..\src\kkm_server_engine.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\reply_writer.cpp" />
-    <ClCompile Include="..\src\request_engine.cpp" />
-    <ClCompile Include="..\src\request_parser.cpp" />
-    <ClCompile Include="..\src\request_processor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\jpos_adapter\win32\jpos_adapter.vcxproj">
-      <Project>{f2b68b2a-a275-482a-b5f2-c1db08718dcb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\kkm_driver\win32\kkm_driver.vcxproj">
-      <Project>{830b4b9d-e14b-419d-a967-29e6225580fe}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\sys_helper\win32\sys_helper.vcxproj">
-      <Project>{b7329376-e6aa-495e-b6ea-b974306c6bb4}</Project>
-    </ProjectReference>
+    <ClCompile Include="..\src\sys_helper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

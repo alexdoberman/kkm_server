@@ -1,7 +1,7 @@
 {
     "header": 
             {
-                "idDev": "http://www.google11.com",
+                "idDev": "http://www.google.com",
                 "idOp":  101
             },
     "body": ["Привет", "2222 &#53;&#53;", "3333","4444444","5555555555"]

@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "net_send", "..\..\net_send\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sys_helper", "..\..\sys_helper\win32\sys_helper.vcxproj", "{B7329376-E6AA-495E-B6EA-B974306C6BB4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kkm_control", "..\..\kkm_control\win32\kkm_control.vcxproj", "{1BB4F700-3229-4859-9273-2674869EFDCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +51,10 @@ Global
 		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Debug|Win32.Build.0 = Debug|Win32
 		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Release|Win32.ActiveCfg = Release|Win32
 		{B7329376-E6AA-495E-B6EA-B974306C6BB4}.Release|Win32.Build.0 = Release|Win32
+		{1BB4F700-3229-4859-9273-2674869EFDCA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1BB4F700-3229-4859-9273-2674869EFDCA}.Debug|Win32.Build.0 = Debug|Win32
+		{1BB4F700-3229-4859-9273-2674869EFDCA}.Release|Win32.ActiveCfg = Release|Win32
+		{1BB4F700-3229-4859-9273-2674869EFDCA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
